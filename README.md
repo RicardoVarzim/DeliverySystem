@@ -1,17 +1,17 @@
-# DeliverySystem
-Route Manager API
+# DeliverySystem - Route Manager API
 
-Specifications
+**Specifications**
 
-Build distributed system using micro services architecture with .NET Core platform
-Messaging using RabbitMQ
-Store user identities and authenticate
-CQRS, commanfs and events handlers design patterns
-Unit and integration test
-Deploy using Docker and Docker Compose
+ - Build distributed system using micro services architecture with .NET
+   Core platform
+ - Messaging using RabbitMQ
+ - Store user identities and authenticate
+ - CQRS, commands and events handlers design patterns
+ - Unit and integration test
+ - Deploy using Docker and Docker Compose
 
-Requirements
+**Requirements**
 
-C# programming language
-Basic understanding of .NET Core platform
-Basic understanding of HTTP API and distributed systems
+ - C# programming language
+ - Basic understanding of .NET Core platform
+ - Basic understanding of HTTP API and distributed systems

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DeliveryService.Common.Events
 {
-    public class UserCreadtedRejected : IRejectedEvent
+    public class UserCreatedRejected : IRejectedEvent
     {
         public string Email { get; }
 
@@ -12,13 +12,13 @@ namespace DeliveryService.Common.Events
 
         public string Code { get; }
 
-        protected UserCreadtedRejected() { }
+        protected UserCreatedRejected() { }
 
-        public UserCreadtedRejected(string email, string reason, string code)
+        public UserCreatedRejected(string email, string reason, string code)
         {
-            Email = email ?? throw new ArgumentNullException(nameof(email));
-            Reason = reason ?? throw new ArgumentNullException(nameof(reason));
-            Code = code ?? throw new ArgumentNullException(nameof(code));
+            Email = email;
+            Reason = reason;
+            Code = code;
         }
     }
 }

@@ -9,14 +9,14 @@ using RawRabbit;
 
 namespace DeliveryService.Api.Controllers
 {
-    [Route("[controller")]
+    [Route("[controller]")]
     public class ActivitiesController : Controller
     {
         private readonly IBusClient _busClient;
 
         public ActivitiesController(IBusClient busClient)
         {
-            _busClient = busClient ?? throw new ArgumentNullException(nameof(busClient));
+            _busClient = busClient;
         }
 
         [HttpPost("")]

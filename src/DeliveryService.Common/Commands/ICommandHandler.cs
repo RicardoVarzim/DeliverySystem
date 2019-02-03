@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using RawRabbit.Common;
+using System.Threading.Tasks;
 
 namespace DeliveryService.Common.Commands
 {

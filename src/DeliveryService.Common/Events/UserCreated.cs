@@ -16,8 +16,8 @@ namespace DeliveryService.Common.Events
 
         public UserCreated(string email, string name)
         {
-            Email = email ?? throw new ArgumentNullException(nameof(email));
-            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Email = email;
+            Name = name;
         }
     }
 }

@@ -19,9 +19,9 @@ namespace DeliveryService.Common.Events
         {
             Id = id;
             UserId = userId;
-            Category = category ?? throw new ArgumentNullException(nameof(category));
-            Name = name ?? throw new ArgumentNullException(nameof(name));
-            Description = description ?? throw new ArgumentNullException(nameof(description));
+            Category = category;
+            Name = name;
+            Description = description;
             CreatedAt = createdAt;
         }
     }

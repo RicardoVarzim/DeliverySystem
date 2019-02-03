@@ -12,7 +12,7 @@ namespace DeliveryService.Common.Events
 
         public UserAuthed(string email)
         {
-            Email = email ?? throw new ArgumentNullException(nameof(email));
+            Email = email;
         }
     }
 }

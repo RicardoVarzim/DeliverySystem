@@ -8,3 +8,4 @@ src/DeliveryService.Api/bin/
 src/DeliveryService.Api/obj/
 src/DeliveryService.Common/bin/
 src/DeliveryService.Common/obj/
+/.vscode

@@ -4,7 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using DeliveryService.Api.Handlers;
 using DeliveryService.Common.Commands;
+using DeliveryService.Common.Mongo;
 using DeliveryService.Common.RabbitMq;
+using DeliveryService.Services.Activities.Domain.Repositories;
+using DeliveryService.Services.Activities.Repositories;
+using DeliveryService.Services.Activities.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,9 +30,14 @@ namespace DeliveryService.Services.Activities
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddLogging();
+            services.AddMongoDb(Configuration);
             services.AddRabbitMq(Configuration);
             services.AddScoped<ICommandHandler<CreateActivity>, CreateActivityHandler>();
-            
+            services.AddScoped<IActivityRepository, ActivityRepository>();
+            services.AddScoped<ICatetoryRepository, CategoryRepository>();
+            services.AddScoped<IDatabaseSeeder, CustomMongoSeeder>();
+            services.AddScoped<IActivityService, ActivityService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +48,7 @@ namespace DeliveryService.Services.Activities
                 app.UseDeveloperExceptionPage();
             }
 
+            app.ApplicationServices.GetService<IDatabaseInit>().InitAsync();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

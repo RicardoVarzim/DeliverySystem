@@ -36,6 +36,16 @@
 - Implementing Api endpoints
 - Subscribing to the messages
 
+**Domain Persistence**
+- Creating domain models
+- Setting up MongoDB
+- Implementing repositories
+- Creating application services
+- Implementing handlers
+
+**Identity Service**
+
+
 **First Run Bash Commands**
 
 - Docker RabbitMQ:
@@ -44,3 +54,5 @@
 	> dotnet run
 - Run ActivityService:
 	> dotnet run --urls "http://*.5050"
+- Docker MongoDB:
+	> docker run -d -p 27017:27017 mongo

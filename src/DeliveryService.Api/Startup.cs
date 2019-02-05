@@ -24,6 +24,7 @@ namespace DeliveryService.Api
             services.AddMvc();
             services.AddRabbitMq(Configuration);
             services.AddScoped<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
+            services.AddScoped<IEventHandler<PointCreated>, PointCreatedHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

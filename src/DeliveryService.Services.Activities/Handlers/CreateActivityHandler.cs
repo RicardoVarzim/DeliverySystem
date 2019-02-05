@@ -39,7 +39,7 @@ namespace DeliveryService.Api.Handlers
 
                 return;
             }
-            catch(DeliverySystemExeception ex)
+            catch(DeliverySystemException ex)
             {
                 await _busClient.PublishAsync(new CreateActivityRejected(command.Id, ex.Message, ex.Code));
                 _logger.LogError(ex.Message);

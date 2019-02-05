@@ -13,3 +13,5 @@ src/DeliveryService.Common/obj/
 tests/DeliveryService.Api/obj/
 tests/DeliveryService.Api/bin/
 /.vscode
+DeliveryService.Services.Points.Tests/obj/
+DeliveryService.Services.Points.Tests/bin/

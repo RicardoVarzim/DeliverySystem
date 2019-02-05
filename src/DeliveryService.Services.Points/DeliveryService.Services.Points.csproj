@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\DeliveryService.Common\DeliveryService.Common.csproj" />
+    <ProjectReference Include="..\DeliveryService.Common\DeliveryService.Common.csproj" />
   </ItemGroup>
 
 </Project>

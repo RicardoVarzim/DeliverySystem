@@ -4,10 +4,12 @@ src/DeliveryService.Services.Identity/obj/
 src/DeliveryService.Services.Identity/bin/
 src/DeliveryService.Services.Activities/obj/
 src/DeliveryService.Services.Activities/bin/
-src/DeliveryService.Services.Node/obj/
-src/DeliveryService.Services.Node/bin/
+src/DeliveryService.Services.Points/obj/
+src/DeliveryService.Services.Points/bin/
 src/DeliveryService.Api/bin/
 src/DeliveryService.Api/obj/
 src/DeliveryService.Common/bin/
 src/DeliveryService.Common/obj/
+tests/DeliveryService.Api/obj/
+tests/DeliveryService.Api/bin/
 /.vscode

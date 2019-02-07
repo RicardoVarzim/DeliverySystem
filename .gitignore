@@ -1,5 +1,6 @@
-.vs/
 *.user
+.vs/
+/.vscode
 src/DeliveryService.Services.Identity/obj/
 src/DeliveryService.Services.Identity/bin/
 src/DeliveryService.Services.Activities/obj/
@@ -10,8 +11,8 @@ src/DeliveryService.Api/bin/
 src/DeliveryService.Api/obj/
 src/DeliveryService.Common/bin/
 src/DeliveryService.Common/obj/
-tests/DeliveryService.Api/obj/
-tests/DeliveryService.Api/bin/
-/.vscode
-DeliveryService.Services.Points.Tests/obj/
-DeliveryService.Services.Points.Tests/bin/
+tests/DeliveryService.Services.Api.Tests/obj
+tests/DeliveryService.Services.Api.Tests/bin
+tests/DeliveryService.Services.Points.Tests/bin
+tests/DeliveryService.Services.Points.Tests/obj
+/tests/DeliveryService.Api.Tests/obj

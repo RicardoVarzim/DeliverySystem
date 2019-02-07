@@ -43,6 +43,16 @@
 - Creating application services
 - Implementing handlers
 
+**Unit and Integration Tests**
+ - Api Testing
+ - Services Testing
+
+ **Dockerizing**
+ - Running services using Docker
+ - Docker Compose tool
+ - Storing Docker images in Hub
+ - Deploying application to the cloud
+
 **First Run Bash Commands**
 
 - Docker RabbitMQ:
@@ -55,8 +65,6 @@
 	> docker run -d -p 27017:27017 mongo
 
 ** TODO** 
-
-- Implement Node
-- Unit and Integration Tests
-- Dockerizing
-- Entity Auth
+- Identity Service and implementation
+- Neo4j Service
+- Resolve Shortest Path

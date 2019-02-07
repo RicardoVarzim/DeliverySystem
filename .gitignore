@@ -16,3 +16,7 @@ tests/DeliveryService.Services.Api.Tests/bin
 tests/DeliveryService.Services.Points.Tests/bin
 tests/DeliveryService.Services.Points.Tests/obj
 /tests/DeliveryService.Api.Tests/obj
+/tests/DeliveryService.Api.Tests/bin/Debug/netcoreapp2.2
+obj/
+tests/DeliveryService.Api.Tests/bin/
+data/

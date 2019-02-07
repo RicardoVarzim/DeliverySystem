@@ -26,5 +26,27 @@ namespace DeliveryService.Services.Points.Tests.Unit.Services
 
             pointsRepositoryMock.Verify(x => x.AddAssync(It.IsAny<Point>()), Times.Once);
         }
+
+        [Fact]
+        public async Task points_service_add()
+        {
+            var pointsRepositoryMock = new Mock<IPointRepository>();
+            var connectionRepositoryMock = new Mock<IConnectionRepository>();
+
+            var pointsService = new PointService(pointsRepositoryMock.Object, connectionRepositoryMock.Object);
+            var id = Guid.NewGuid();
+
+            Random rnd = new Random();
+
+            var connections = new List<Connection>
+            {
+                new Connection(Guid.NewGuid(),rnd.Next(),id,string.Empty)
+            };
+
+            await pointsService.AddPointAsync(id, "point", Guid.NewGuid(), DateTime.UtcNow, connections);
+
+            pointsRepositoryMock.Verify(x => x.AddAssync(It.IsAny<Point>()), Times.Once);
+
+        }
     }
 }

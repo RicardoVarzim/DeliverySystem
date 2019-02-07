@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace DeliveryService.Api.Controllers
 {
     [Route("")]
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Hello from DeliveryService EPIC Api
+        /// </summary>
+        /// <returns>
+        /// Returns Hello from DeliveryServiceApo
+        /// </returns>
         [Route("")]
         public IActionResult Get()
         {

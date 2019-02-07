@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace DeliveryService.Api
 {
@@ -25,6 +29,29 @@ namespace DeliveryService.Api
             services.AddRabbitMq(Configuration);
             services.AddScoped<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
             services.AddScoped<IEventHandler<PointCreated>, PointCreatedHandler>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v0",
+                    new Info
+                    {
+                        Title = "Delivery Service",
+                        Version = "v0",
+                        Description = "REST API to administrate and help a delivery service.",
+                        Contact = new Contact
+                        {
+                            Name = "Ricardo Varzim",
+                            Url = "https://github.com/RicardoVarzim"
+                        }
+                    });
+
+                var basePath = AppDomain.CurrentDomain.BaseDirectory;
+                var appName = Assembly.GetEntryAssembly().GetName().Name;
+                string pathXmlDoc =
+                    Path.Combine(basePath, $"{appName}.xml");
+
+                c.IncludeXmlComments(pathXmlDoc);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +63,12 @@ namespace DeliveryService.Api
             }
 
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Delivery Service");
+            });
         }
     }
 }

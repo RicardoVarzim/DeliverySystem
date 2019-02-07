@@ -53,18 +53,8 @@
  - Storing Docker images in Hub
  - Deploying application to the cloud
 
-**First Run Bash Commands**
-
-- Docker RabbitMQ:
-	> docker run -p 5672:5672 rabbitmq
-- Run API:
-	> dotnet run
-- Run ActivityService:
-	> dotnet run --urls "http://*.5050"
-- Docker MongoDB:
-	> docker run -d -p 27017:27017 mongo
-
 ** TODO** 
-- Identity Service and implementation
 - Neo4j Service
 - Resolve Shortest Path
+- Identity Service and implementation
+- Swagger

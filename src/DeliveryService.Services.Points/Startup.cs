@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DeliveryService.Common.Commands;
+﻿using DeliveryService.Common.Commands;
 using DeliveryService.Common.Mongo;
 using DeliveryService.Common.RabbitMq;
 using DeliveryService.Services.Points.Domain.Repositories;
@@ -14,7 +10,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
 
 namespace DeliveryService.Services.Node
 {
@@ -36,6 +31,7 @@ namespace DeliveryService.Services.Node
             services.AddRabbitMq(Configuration);
             services.AddScoped<ICommandHandler<CreatePoint>, CreatePointHandler>();
             services.AddScoped<IPointRepository, PointRepository>();
+            services.AddScoped<IConnectionRepository, ConnectionRepository>();
             services.AddScoped<IDatabaseSeeder, CustomMongoSeeder>();
             services.AddScoped<IPointService, PointService>();
         }

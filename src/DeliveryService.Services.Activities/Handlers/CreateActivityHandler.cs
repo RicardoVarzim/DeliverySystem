@@ -17,7 +17,7 @@ namespace DeliveryService.Api.Handlers
 
         public CreateActivityHandler(IBusClient busClient, 
             IActivityService activityService,
-            ILogger logger)
+            ILogger<CreateActivityHandler> logger)
         {
             _busClient = busClient ?? throw new ArgumentNullException(nameof(busClient));
             _activityService = activityService;

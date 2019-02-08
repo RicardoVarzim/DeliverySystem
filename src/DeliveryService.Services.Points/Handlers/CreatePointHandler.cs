@@ -18,7 +18,7 @@ namespace DeliveryService.Services.Points.Handlers
 
         public CreatePointHandler(IBusClient busClient,
             IPointService pointService,
-            ILogger logger)
+            ILogger<CreatePointHandler> logger)
         {
             _busClient = busClient;
             _pointService = pointService;

@@ -50,11 +50,18 @@
  **Dockerizing**
  - Running services using Docker
  - Docker Compose tool
- - Storing Docker images in Hub
  - Deploying application to the cloud
+
+ ** Swagger ** 
+
+ **Identity Service and implementation**
+
+ **Jason Web Tokens**
+ - Authenticating users with JWT
 
 ** TODO** 
 - Neo4j Service
-- Resolve Shortest Path
-- Identity Service and implementation
-- Swagger
+- Resolve Shortest Path 
+
+** References **
+ -

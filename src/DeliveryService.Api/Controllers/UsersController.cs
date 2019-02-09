@@ -19,7 +19,7 @@ namespace DeliveryService.Api.Controllers
             _busClient = busClient ?? throw new ArgumentNullException(nameof(busClient));
         }
 
-        [HttpPost("register")]
+        [HttpPost("")]
         public async Task<IActionResult> Post([FromBody] CreateUser command)
         {
             await _busClient.PublishAsync(command);

@@ -44,10 +44,9 @@ namespace DeliveryService.Services.Node
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            app.ApplicationServices.GetService<IDatabaseInit>().InitAsync();
+            app.UseHttpsRedirection();
+            app.UseMvc();
         }
     }
 }

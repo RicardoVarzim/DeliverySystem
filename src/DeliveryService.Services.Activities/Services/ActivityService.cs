@@ -25,7 +25,7 @@ namespace DeliveryService.Services.Activities.Services
             var activityCategory = await _catetoryRepository.GetAsync(category);
             if(activityCategory == null)
             {
-                throw new DeliverySystemException("category_not_found", category + " was not found.");
+                throw new DeliveryServiceException("category_not_found", category + " was not found.");
             }
             var activity = new Activity(id,name,category,description,userId,createdAt);
             await _activityRepository.AddAsync(activity);

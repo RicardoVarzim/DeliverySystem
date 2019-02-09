@@ -4,15 +4,15 @@ using System.Text;
 
 namespace DeliveryService.Common.Exceptions
 {
-    public class DeliverySystemException : Exception
+    public class DeliveryServiceException : Exception
     {
         public string Code { get; }
 
-        public DeliverySystemException()
+        public DeliveryServiceException()
         {
         }
 
-        public DeliverySystemException(string code, string v):base(v)
+        public DeliveryServiceException(string code, string v):base(v)
         {
             Code = code ?? throw new ArgumentNullException(nameof(code));
         }

@@ -38,7 +38,7 @@ namespace DeliveryService.Services.Points.Handlers
 
                 return;
             }
-            catch (DeliverySystemException ex)
+            catch (DeliveryServiceException ex)
             {
                 await _busClient.PublishAsync(new ConnectionCreatedRejected(command.Id, ex.Message, ex.Code));
                 _logger.LogError(ex.Message);

@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DeliveryService.Common.Commands;
+using DeliveryService.Common.Mongo;
+using DeliveryService.Common.RabbitMq;
+using DeliveryService.Services.Identity.Domain.Repositories;
+using DeliveryService.Services.Identity.Domain.Services;
+using DeliveryService.Services.Identity.Handlers;
+using DeliveryService.Services.Identity.Repositories;
+using DeliveryService.Services.Identity.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace DeliveryService.Services.Identity
 {
@@ -26,6 +27,13 @@ namespace DeliveryService.Services.Identity
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddLogging();
+            services.AddRabbitMq(Configuration);
+            services.AddMongoDb(Configuration);
+            services.AddScoped<ICommandHandler<CreateUser>, CreateUserHandler>();
+            services.AddScoped<IEncrypter, Encrypter>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,11 +43,8 @@ namespace DeliveryService.Services.Identity
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
+            app.ApplicationServices.GetService<IDatabaseInit>().InitAsync();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

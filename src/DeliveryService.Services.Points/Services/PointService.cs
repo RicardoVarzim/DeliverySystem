@@ -25,7 +25,7 @@ namespace DeliveryService.Services.Points.Services
             var pointConnection = await _pointRepository.GetAsync(destination);
             if (pointConnection == null)
             {
-                throw new DeliverySystemException("destination_not_found", destination + " was not found.");
+                throw new DeliveryServiceException("destination_not_found", destination + " was not found.");
             }
             var connection = new Connection(id, cost, destination, observations);
             await _connectionRepository.AddAsync(connection);

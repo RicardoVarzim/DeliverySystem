@@ -18,7 +18,7 @@ namespace DeliveryService.Services.Points.Domain.Models
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new DeliverySystemException("empty_point_name", "Point cannot be empty.");
+                throw new DeliveryServiceException("empty_point_name", "Point cannot be empty.");
             }
 
             Id = id;

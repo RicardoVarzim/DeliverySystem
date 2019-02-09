@@ -26,6 +26,7 @@ namespace DeliveryService.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddLogging();
             services.AddRabbitMq(Configuration);
             services.AddScoped<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
             services.AddScoped<IEventHandler<PointCreated>, PointCreatedHandler>();

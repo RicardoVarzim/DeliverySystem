@@ -14,7 +14,7 @@ namespace DeliveryService.Services.Activities.Domain.Models
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new DeliverySystemException("empty_actitivity_name", "Activity name not found.");
+                throw new DeliveryServiceException("empty_actitivity_name", "Activity name not found.");
             }
 
             Id = id;

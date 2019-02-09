@@ -1,4 +1,5 @@
-﻿using DeliveryService.Common.Exceptions;
+﻿using DeliveryService.Common.Auth;
+using DeliveryService.Common.Exceptions;
 using DeliveryService.Services.Identity.Domain.Models;
 using DeliveryService.Services.Identity.Domain.Repositories;
 using DeliveryService.Services.Identity.Domain.Services;
@@ -13,20 +14,24 @@ namespace DeliveryService.Services.Identity.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IEncrypter _encrypter;
+        private readonly IJwtHandler _jwtHandler; 
 
-        public UserService(IUserRepository userRepository, IEncrypter encrypter)
+        public UserService(IUserRepository userRepository, IEncrypter encrypter, IJwtHandler jwtHandler)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _encrypter = encrypter ?? throw new ArgumentNullException(nameof(encrypter));
+            _jwtHandler = jwtHandler;
         }
 
-        public async Task LoginAsync(string email, string password)
+        public async Task<JsonWebToken> LoginAsync(string email, string password)
         {
             var user = await _userRepository.GetAsync(email);
             if (user == null)
                 throw new DeliveryServiceException("user_doesnt_exists", "Invalid User");
             if (!user.ValidatePassword(password, _encrypter))
                 throw new DeliveryServiceException("invalid_password", "Invalid password");
+
+            return _jwtHandler.Create(user.Id);
         }
 
         public async Task RegisterAsync(string email, string password, string name)

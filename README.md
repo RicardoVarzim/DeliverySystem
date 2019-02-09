@@ -52,16 +52,21 @@
  - Docker Compose tool
  - Deploying application to the cloud
 
- ** Swagger ** 
+ **Swagger** 
 
  **Identity Service and implementation**
 
  **Jason Web Tokens**
  - Authenticating users with JWT
 
-** TODO** 
+**TODO** 
 - Neo4j Service
 - Resolve Shortest Path 
 
+** Getting Started **
+
+** Curl command for access basic functions **
+
+
 ** References **
- -
+ 

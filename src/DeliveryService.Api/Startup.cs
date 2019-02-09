@@ -1,4 +1,5 @@
 ﻿using DeliveryService.Api.Handlers;
+using DeliveryService.Common.Auth;
 using DeliveryService.Common.Events;
 using DeliveryService.Common.RabbitMq;
 using Microsoft.AspNetCore.Builder;
@@ -27,6 +28,7 @@ namespace DeliveryService.Api
         {
             services.AddMvc();
             services.AddLogging();
+            services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
             services.AddScoped<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
             services.AddScoped<IEventHandler<PointCreated>, PointCreatedHandler>();

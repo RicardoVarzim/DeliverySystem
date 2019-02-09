@@ -1,4 +1,5 @@
-﻿using DeliveryService.Common.Commands;
+﻿using DeliveryService.Common.Auth;
+using DeliveryService.Common.Commands;
 using DeliveryService.Common.Mongo;
 using DeliveryService.Common.RabbitMq;
 using DeliveryService.Services.Identity.Domain.Repositories;
@@ -28,6 +29,7 @@ namespace DeliveryService.Services.Identity
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddLogging();
+            services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
             services.AddMongoDb(Configuration);
             services.AddScoped<ICommandHandler<CreateUser>, CreateUserHandler>();

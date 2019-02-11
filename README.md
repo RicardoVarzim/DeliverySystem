@@ -53,10 +53,10 @@
  - Deploying application to the cloud
 
  **Swagger** 
+ - Api exposed using swagger
 
  **Identity Service and implementation**
-
- **Jason Web Tokens**
+ - Json Web Tokens
  - Authenticating users with JWT
 
 **TODO** 
@@ -64,6 +64,18 @@
 - Resolve Shortest Path 
 
 ** Getting Started **
+
+- Publish
+	- cd src
+	- dotnet publish ./DeliveryService.Api -c Release -o ./bin/Docker; dotnet publish ./DeliveryService.Services.Points -c Release -o ./bin/Docker; dotnet publish ./DeliveryService.Services.Identity -c Release -o ./bin/Docker
+
+- Docker Build
+	- cd src
+	- docker build -f .\DeliveryService.Api\Dockerfile -t deliveryservice.api .\DeliveryService.Api\; docker build -f .\DeliveryService.Services.Points\Dockerfile -t deliveryservice.services.points .\DeliveryService.Services.Points\; docker build -f .\DeliveryService.Services.Identity\Dockerfile -t deliveryservice.services.identity .\DeliveryService.Services.Identity\
+
+- Docker Compose Run
+	- cd scripts
+	- docker-compose up
 
 ** Curl command for access basic functions **
 

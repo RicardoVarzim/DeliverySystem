@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.28531.58
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{38F1F7D1-99FB-476D-A40B-999E2D005F2E}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryService.Api", "src\DeliveryService.Api\DeliveryService.Api.csproj", "{E2A4EB33-0AA8-431E-9230-B9C9B4493498}"
 EndProject
@@ -26,6 +29,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryService.Services.Points", "src\DeliveryService.Services.Points\DeliveryService.Services.Points.csproj", "{783BEB0E-567C-4ECF-8833-7DD30719A735}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveryService.Api.Tests", "tests\DeliveryService.Api.Tests\DeliveryService.Api.Tests.csproj", "{258A3701-F898-4855-9E88-E65C7B4E879F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{30685337-F4CF-45A2-98F2-3CFCF7D7580B}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\docker-compose.yaml = scripts\docker-compose.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

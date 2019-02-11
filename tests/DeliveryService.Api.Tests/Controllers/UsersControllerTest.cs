@@ -1,6 +1,6 @@
 ﻿using DeliveryService.Api.Controllers;
 using DeliveryService.Common.Commands;
-using DeliveryService.Services.Points.Domain.Repositories;
+using DeliveryService.Services.Identity.Domain.Repositories;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,13 +14,13 @@ using Xunit;
 
 namespace DeliveryService.Api.Tests.Controllers
 {
-    public class PointsControllerTests
+    public class UsersControllerTest
     {
         [Fact]
-        public async void points_controller_post_should_return_accepted()
+        public async void user_controller_create_user_should_return_accepted()
         {
             var busClientMock = new Mock<IBusClient>();
-            var controller = new PointsController(busClientMock.Object);
+            var controller = new UsersController(busClientMock.Object);
             var userId = Guid.NewGuid();
             controller.ControllerContext = new ControllerContext
             {
@@ -34,19 +34,18 @@ namespace DeliveryService.Api.Tests.Controllers
                 }
             };
 
-            var command = new CreatePoint
+            var command = new CreateUser
             {
-                Id = Guid.NewGuid(),
-                UserId = userId
+                Email = "test@email.com",
+                Name = "test",
+                Password = "12345"
             };
 
             var result = await controller.Post(command);
 
             var contentResult = result as AcceptedResult;
             contentResult.Should().NotBeNull();
-            contentResult.Location.Should().BeEquivalentTo("points/" + command.Id);
-
+            contentResult.Location.Should().BeEquivalentTo("users/" + command.Name);
         }
-
     }
 }

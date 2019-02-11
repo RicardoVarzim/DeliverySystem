@@ -75,10 +75,11 @@
 
 - Docker Compose Run
 	- cd scripts
+	- docker-compose up rabbitmq
 	- docker-compose up
 
 ** Curl command for access basic functions **
 
 
-** References **
+** Acknowledgements and Difficulties**
  

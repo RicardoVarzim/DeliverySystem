@@ -5,27 +5,39 @@ services:
     image: dadarek/wait-for-dependencies
     depends_on:
       - mongo
+      - neo4j
       - rabbitmq
     command: rabbitmq:5672
 
   api:
     build: ../src/DeliveryService.Api
+    restart: on-failure
+    depends_on:
+      - rabbitmq
     links:
       - rabbitmq
       - mongo
     ports:
       - '5000:5000'
 
-  activities-service:
+  points-service:
     build: ../src/DeliveryService.Services.Points
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+      - neo4j
     links:
       - rabbitmq
       - mongo
+      - neo4j
     ports:
       - '5050:5050'
 
   identity-service:
     build: ../src/DeliveryService.Services.Identity
+    restart: on-failure
+    depends_on:
+      - rabbitmq
     links:
       - rabbitmq
       - mongo
@@ -38,6 +50,14 @@ services:
       - ./data/db:/data/db
     ports:
       - '27017:27017'
+  
+  neo4j:
+    image: neo4j
+    volumes:
+      - ./neo4j/data:/data/neo4j/db
+    ports:
+      - '7474:7474'
+      - '7687:7687'
 
   rabbitmq:
     image: rabbitmq:3.6.5-management

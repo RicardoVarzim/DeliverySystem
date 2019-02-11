@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\DeliveryService.Api\DeliveryService.Api.csproj" />
     <ProjectReference Include="..\..\src\DeliveryService.Services.Points\DeliveryService.Services.Points.csproj" />
   </ItemGroup>
 

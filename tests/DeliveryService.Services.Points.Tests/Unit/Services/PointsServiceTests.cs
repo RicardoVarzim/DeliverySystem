@@ -28,7 +28,7 @@ namespace DeliveryService.Services.Points.Tests.Unit.Services
         }
 
         [Fact]
-        public async Task points_service_add()
+        public async Task points_service_add_async_with_connection_should_succeed()
         {
             var pointsRepositoryMock = new Mock<IPointRepository>();
             var connectionRepositoryMock = new Mock<IConnectionRepository>();

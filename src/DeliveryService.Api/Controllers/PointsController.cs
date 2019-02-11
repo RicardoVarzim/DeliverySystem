@@ -18,7 +18,7 @@ namespace DeliveryService.Api.Controllers
 
         public PointsController(IBusClient busClient)
         {
-            _busClient = busClient ?? throw new ArgumentNullException(nameof(busClient));
+            _busClient = busClient;
         }
 
         [HttpPost("")]
@@ -34,9 +34,11 @@ namespace DeliveryService.Api.Controllers
         }
 
         [HttpGet("")]
-        public IActionResult GetPath()
+        public async Task<IActionResult> GetPath([FromBody] GetPath command)
         {
-            return Content("TODO");
+            await _busClient.PublishAsync(command);
+
+            return Accepted("points/");
         }
     }
 }

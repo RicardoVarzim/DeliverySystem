@@ -27,7 +27,7 @@ namespace DeliveryService.Services.Identity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc();
             services.AddLogging();
             services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
@@ -47,7 +47,6 @@ namespace DeliveryService.Services.Identity
             }
 
             app.ApplicationServices.GetService<IDatabaseInit>().InitAsync();
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

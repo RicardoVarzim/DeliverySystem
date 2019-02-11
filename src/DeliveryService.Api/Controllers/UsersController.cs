@@ -16,7 +16,7 @@ namespace DeliveryService.Api.Controllers
 
         public UsersController(IBusClient busClient)
         {
-            _busClient = busClient ?? throw new ArgumentNullException(nameof(busClient));
+            _busClient = busClient;
         }
 
         [HttpPost("")]
@@ -24,7 +24,7 @@ namespace DeliveryService.Api.Controllers
         {
             await _busClient.PublishAsync(command);
 
-            return Accepted();
+            return Accepted("users/" + command.Name);
         }
     }
 }

@@ -64,7 +64,7 @@ namespace DeliveryService.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseAuthentication();
             app.UseMvc();
 
             app.UseSwagger();

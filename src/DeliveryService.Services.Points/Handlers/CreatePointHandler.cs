@@ -16,17 +16,16 @@ namespace DeliveryService.Services.Points.Handlers
         private readonly IBusClient _busClient;
         private readonly IPointService _pointService;
         private ILogger _logger;
-        private IGraphClient _graphClient; //TODO:
+        //private IGraphClient _graphClient; //TODO:
 
         public CreatePointHandler(IBusClient busClient,
             IPointService pointService,
-            ILogger<CreatePointHandler> logger, 
-            IGraphClient graphClient)
+            ILogger<CreatePointHandler> logger)
         {
             _busClient = busClient;
             _pointService = pointService;
             _logger = logger;
-            _graphClient = graphClient;
+            //_graphClient = graphClient;
         }
 
         public async Task HandleAsync(CreatePoint command)

@@ -31,7 +31,7 @@ namespace DeliveryService.Services.Points
             services.AddMvc();
             services.AddLogging();
             services.AddMongoDb(Configuration);
-            //services.AddNeo4jDb(Configuration); 
+            services.AddNeo4jDb(Configuration); 
             services.AddRabbitMq(Configuration);
             services.AddScoped<IPointRepository, PointRepository>();
             services.AddScoped<IConnectionRepository, ConnectionRepository>();

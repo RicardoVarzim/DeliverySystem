@@ -1,13 +1,13 @@
 version: "3"
 
 services:
-  start-dependencies:
-    image: dadarek/wait-for-dependencies
-    depends_on:
-      - mongo
-      - neo4j
-      - rabbitmq
-    command: rabbitmq:5672
+  #start-dependencies:
+  #  image: dadarek/wait-for-dependencies
+  #  depends_on:
+  #    - mongo
+  #    - neo4j
+  #    - rabbitmq
+  #  command: rabbitmq:5672
 
   api:
     build: ../src/DeliveryService.Api
@@ -16,7 +16,6 @@ services:
       - rabbitmq
     links:
       - rabbitmq
-      - mongo
     ports:
       - '5000:5000'
 
@@ -44,20 +43,20 @@ services:
     ports:
       - '5051:5051'
 
-  mongo:
-    image: mongo
-    volumes:
-      - ./data/db:/data/db
-    ports:
-      - '27017:27017'
-  
   neo4j:
     image: neo4j
-    volumes:
-      - ./neo4j/data:/data/neo4j/db
+    #volumes:
+    # - ./neo4j/data:/data/neo4j/db
     ports:
       - '7474:7474'
       - '7687:7687'
+
+  mongo:
+    image: mongo
+    #volumes:
+    #  - ./data/db:/data/db
+    ports:
+      - '27017:27017'
 
   rabbitmq:
     image: rabbitmq:3.6.5-management

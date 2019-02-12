@@ -20,3 +20,4 @@ tests/DeliveryService.Services.Points.Tests/obj
 obj/
 tests/DeliveryService.Api.Tests/bin/
 data/
+bin/

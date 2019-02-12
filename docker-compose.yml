@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  deliveryservice.api:
+    image: ${DOCKER_REGISTRY-}deliveryserviceapi
+    links:
+      - rabbitmq
+      - mongo
+    ports:
+      - '5000:5000'
+    build:
+      context: .
+      dockerfile: src/DeliveryService.Api/Dockerfile
+    restart: on-failure
+  deliveryservice.services.points:
+    image: ${DOCKER_REGISTRY-}deliveryserviceservicespoints
+    links:
+      - rabbitmq
+      - mongo
+    ports:
+      - '5050:5050'
+    build:
+      context: .
+      dockerfile: src/DeliveryService.Services.Points/Dockerfile
+    restart: on-failure
+  deliveryservice.services.identity:
+    image: ${DOCKER_REGISTRY-}deliveryserviceservicesidentity
+    links:
+      - rabbitmq
+      - mongo
+    ports:
+      - '5051:5051'
+    build:
+      context: .
+      dockerfile: src/DeliveryService.Services.Identity/Dockerfile
+    restart: on-failure
+  mongo:
+    image: mongo
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - '27017:27017'
+  rabbitmq:
+    image: rabbitmq:3.6.5-management
+    ports:
+      - '5672:5672'
+      - '15672:15672'

@@ -45,3 +45,10 @@ services:
     ports:
       - '5672:5672'
       - '15672:15672'
+  neo4j:
+    image: neo4j
+    volumes:
+     - ./neo4j/data:/data/neo4j/db
+    ports:
+      - '7474:7474'
+      - '7687:7687'

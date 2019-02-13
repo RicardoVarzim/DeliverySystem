@@ -38,6 +38,7 @@ namespace DeliveryService.Services.Points
             services.AddScoped<IDatabaseSeeder, CustomMongoSeeder>();
             services.AddScoped<ICommandHandler<CreatePoint>, CreatePointHandler>();
             services.AddScoped<IPointService, PointService>();
+            services.AddScoped<IGraphRepository, GraphRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

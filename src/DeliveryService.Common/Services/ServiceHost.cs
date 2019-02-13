@@ -29,7 +29,7 @@ namespace DeliveryService.Common.Services
                 AddEnvironmentVariables().AddCommandLine(args).Build();
             var webHostBuilder = WebHost.CreateDefaultBuilder(args)
                 .UseConfiguration(config)
-                //.UseDefaultServiceProvider(options => options.ValidateScopes = false)
+                .UseDefaultServiceProvider(options => options.ValidateScopes = false)
                 .UseStartup<TStartup>();
             return new HostBuilder(webHostBuilder.Build());
         }

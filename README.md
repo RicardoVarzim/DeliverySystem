@@ -1,3 +1,4 @@
+
 # DeliverySystem - Route Manager API
 
 **Specifications**
@@ -16,21 +17,25 @@
  - Basic understanding of .NET Core platform
  - Basic understanding of HTTP API and distributed systems
 
-**Enviorenment**
+**Environment**
 
 - Visual Studio 2019
 - Docker for Windows
 - mongodb
+- neo4j
+- rabbitmq
+- jwt
 
 **System Architecture**
 
-- HTTP API GateWay
-- Service Bus
+- HTTP API Gateway
 - Identity Service
-- Activities Service
+- Points Service
+
+## Development
 
 **Messaging**
-- Configuring RabbitMQ service bus
+- Configuring RabbitMq service bus
 - Creating Commands
 - Creating Events
 - Implementing Api endpoints
@@ -38,7 +43,7 @@
 
 **Domain Persistence**
 - Creating domain models
-- Setting up MongoDB
+- Setting up MongoDb
 - Implementing repositories
 - Creating application services
 - Implementing handlers
@@ -50,7 +55,6 @@
  **Dockerizing**
  - Running services using Docker
  - Docker Compose tool
- - Deploying application to the cloud
 
  **Swagger** 
  - Api exposed using swagger
@@ -58,19 +62,42 @@
  **Identity Service and implementation**
  - Json Web Tokens
  - Authenticating users with JWT
+ 
+ **Neo4j**
+ 
 
-**Usage**
-	- docker-compose up --build
+## Usage
+	
+
+ - First build:
+		 `cd DeliveryService; docker-compose up --build;`
+		 
+ - Usefull Commands:
+		`docker-compose down`
+		`docker stop $(docker ps -a -q)`
+		`docker rm $(docker ps -a -q)`
 
 **Basic Functions**
 
+## Exercise Overview
 
 **Acknowledgements**
- - TODO
+ - First time using docker and docker compose
+ - Implementing Service Bus
 
 **Difficulties**
  - Docker run with Api dependencies on RabbitMQ
  
-**TODO** 
-- Neo4j Service
+## References
+ - .NET Microservices: Architecture for Containerized .NET Applications https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/
+ - .NET Core Microservices Course: https://www.packtpub.com/application-development/net-core-microservices-video
+ - Docker CLI commands you can’t live without:  https://medium.com/the-code-review/top-10-docker-commands-you-cant-live-without-54fb6377f481
+ - Neo4jClient wiki: https://github.com/Readify/Neo4jClient/wiki
+ - Graph Algorithms in Neo4j: Shortest Path: https://neo4j.com/blog/graph-algorithms-neo4j-shortest-path/
+ - A prototype web application for managing and visualizing refugees and hotspots: https://gitlab.com/efxa/refugee
+ - Get started with Swashbuckle and ASP.NET Core: https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.2&tabs=visual-studio
+
+
+**Future Work** 
+- Neo4j Client Connect
 - Resolve Shortest Path 

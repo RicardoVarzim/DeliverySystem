@@ -47,6 +47,8 @@ services:
       - '15672:15672'
   neo4j:
     image: neo4j
+    #environment:
+    #  NEO4J_AUTH: neo4j2:neo4j2
     volumes:
      - ./neo4j/data:/data/neo4j/db
     ports:

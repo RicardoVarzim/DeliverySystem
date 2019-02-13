@@ -76,6 +76,7 @@
 		`docker-compose down`
 		`docker stop $(docker ps -a -q)`
 		`docker rm $(docker ps -a -q)`
+		`docker rmi $(docker images -a -q)`
 
 **Basic Functions**
 
@@ -86,7 +87,14 @@
  - Implementing Service Bus
 
 **Difficulties**
- - Docker run with Api dependencies on RabbitMQ
+
+ - Docker run with Api dependencies on RabbitMQ:
+	problem: on docker compose the services didn't wait on the dependencies like MQ service, so at startup they closed.
+	solution: `restart: on-failure` on api, points and identity services
+ 
+ - Neo4j connect
+	problem: Neo4jClient.GraphClient.Connect cannot assign requested address even though the Neo4j server was accessible throw browser
+	solution: (TODO) The neo4j image needs to have a user and password different from the default in order to client get a connection. On docker compose neo4j image, setup `environment: NEO4J_AUTH: user:password`
  
 ## References
  - .NET Microservices: Architecture for Containerized .NET Applications https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/

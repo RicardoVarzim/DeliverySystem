@@ -6,7 +6,7 @@ using DeliveryService.Common.Exceptions;
 using DeliveryService.Services.Points.Domain.Models;
 using DeliveryService.Services.Points.Services;
 using Microsoft.Extensions.Logging;
-using Neo4jClient;
+using Neo4j;
 using RawRabbit;
 
 namespace DeliveryService.Services.Points.Handlers
@@ -16,17 +16,17 @@ namespace DeliveryService.Services.Points.Handlers
         private readonly IBusClient _busClient;
         private readonly IPointService _pointService;
         private ILogger _logger;
-        private IGraphClient _graphClient; //TODO:
+        private Neo4j.Driver.V1.IDriver _graphDriver; //TODO:
 
         public CreatePointHandler(IBusClient busClient,
             IPointService pointService,
             ILogger<CreatePointHandler> logger,
-            IGraphClient graphClient)
+            Neo4j.Driver.V1.IDriver graphDriver)
         {
             _busClient = busClient;
             _pointService = pointService;
             _logger = logger;
-            _graphClient = graphClient;
+            _graphDriver = graphDriver;
         }
 
         public async Task HandleAsync(CreatePoint command)

@@ -33,13 +33,13 @@ namespace DeliveryService.Services.Points.Services
 
         public async Task AddPointAsync(Guid id, string name, Guid userId, DateTime createdAt)
         {
-            var point = new Point(id, name, userId, createdAt, null);
+            var point = new MyPoint(id, name, userId, createdAt, null);
             await _pointRepository.AddAssync(point);
         }
 
         public async Task AddPointAsync(Guid id, string name, Guid userId, DateTime createdAt, IEnumerable<Connection> connections)
         {
-            var point = new Point(id, name, userId, createdAt, null);
+            var point = new MyPoint(id, name, userId, createdAt, null);
             await _pointRepository.AddAssync(point);
 
             foreach (var item in connections)

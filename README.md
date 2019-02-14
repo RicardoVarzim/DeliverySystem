@@ -94,8 +94,9 @@
  
  - Neo4j connect
 	problem: Neo4jClient.GraphClient.Connect cannot assign requested address even though the Neo4j server was accessible throw browser
-	solution: (TODO) The neo4j image needs to have a user and password different from the default in order to client get a connection. On docker compose neo4j image, setup `environment: NEO4J_AUTH: user:password`
- 
+	solution attempt 1: The neo4j image needs to have a user and password different from the default in order to client get a connection. On docker compose neo4j image, setup `environment: NEO4J_AUTH: user:password`
+    solution attempt 2: nevermind Neo4jClient and use Neo4jDriver instead
+  
 ## References
  - .NET Microservices: Architecture for Containerized .NET Applications https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/
  - .NET Core Microservices Course: https://www.packtpub.com/application-development/net-core-microservices-video

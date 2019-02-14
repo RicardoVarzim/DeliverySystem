@@ -1,20 +1,19 @@
 ﻿using DeliveryService.Services.Points.Domain.Models;
 using DeliveryService.Services.Points.Domain.Repositories;
-using Neo4jClient;
+using Neo4j.Driver.V1;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DeliveryService.Services.Points.Repositories
 {
     public class GraphRepository : IGraphRepository
     {
-        private readonly IGraphClient client;
+        private readonly IDriver driver;
 
-        public GraphRepository(IGraphClient client)
+        public GraphRepository(IDriver driver)
         {
-            this.client = client ?? throw new ArgumentNullException(nameof(client));
+            this.driver = driver;
         }
 
         public Task AddConnectionAsync(Guid pointId, Connection connection)
@@ -22,12 +21,12 @@ namespace DeliveryService.Services.Points.Repositories
             throw new NotImplementedException();
         }
 
-        public Task AddPointAsync(Point node)
+        public Task AddPointAsync(MyPoint node)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Point>> PathAsync(Point origin, Point destiny)
+        public Task<IEnumerable<MyPoint>> PathAsync(MyPoint origin, MyPoint destiny)
         {
             throw new NotImplementedException();
         }

@@ -4,7 +4,7 @@ using DeliveryService.Common.Exceptions;
 
 namespace DeliveryService.Services.Points.Domain.Models
 {
-    public class Point
+    public class MyPoint
     {
         public Guid Id { get; private set; }
         public string Name { get; private set; }
@@ -12,9 +12,9 @@ namespace DeliveryService.Services.Points.Domain.Models
         public DateTime CreatedAt { get; private set; }
         public List<Connection> Connections { get; private set; }
 
-        protected Point() { }
+        protected MyPoint() { }
 
-        public Point(Guid id, string name, Guid userId, DateTime createdAt, List<Connection> connections)
+        public MyPoint(Guid id, string name, Guid userId, DateTime createdAt, List<Connection> connections)
         {
             if (string.IsNullOrWhiteSpace(name))
             {

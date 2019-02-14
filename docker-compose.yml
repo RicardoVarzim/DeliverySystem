@@ -46,11 +46,12 @@ services:
       - '5672:5672'
       - '15672:15672'
   neo4j:
-    image: neo4j
-    #environment:
-    #  NEO4J_AUTH: neo4j2:neo4j2
+    image: neo4j:3.4
+    environment:
+      - NEO4J_AUTH=neo4j/newpassword
     volumes:
-     - ./neo4j/data:/data/neo4j/db
+     - ./neo4j/data:/data/neo4j
+    # - ./neo4j/logs:/logs/neo4j
     ports:
       - '7474:7474'
       - '7687:7687'

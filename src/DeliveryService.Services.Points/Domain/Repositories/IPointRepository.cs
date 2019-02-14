@@ -7,8 +7,8 @@ namespace DeliveryService.Services.Points.Domain.Repositories
 {
     public interface IPointRepository
     {
-        Task<Point> GetAsync(Guid id);
-        Task<IEnumerable<Point>> BrowseAsync();
-        Task AddAssync(Point node);
+        Task<MyPoint> GetAsync(Guid id);
+        Task<IEnumerable<MyPoint>> BrowseAsync();
+        Task AddAssync(MyPoint node);
     }
 }

@@ -18,22 +18,22 @@ namespace DeliveryService.Services.Points.Repositories
             _database = database ?? throw new ArgumentNullException(nameof(database));
         }
 
-        private IMongoCollection<Point> Collection
+        private IMongoCollection<MyPoint> Collection
         {
-            get { return _database.GetCollection<Point>("Points"); }
+            get { return _database.GetCollection<MyPoint>("Points"); }
         }
 
-        public async Task AddAssync(Point node)
+        public async Task AddAssync(MyPoint node)
         {
             await Collection.InsertOneAsync(node);
         }
 
-        public async Task<IEnumerable<Point>> BrowseAsync()
+        public async Task<IEnumerable<MyPoint>> BrowseAsync()
         {
             return await Collection.AsQueryable().ToListAsync();
         }
 
-        public async Task<Point> GetAsync(Guid id)
+        public async Task<MyPoint> GetAsync(Guid id)
         {
             return await Collection.AsQueryable().FirstOrDefaultAsync(p=>p.Id == id);
         }

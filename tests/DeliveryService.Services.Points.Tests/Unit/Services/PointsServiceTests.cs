@@ -24,7 +24,7 @@ namespace DeliveryService.Services.Points.Tests.Unit.Services
 
             await pointsService.AddPointAsync(id, "point", Guid.NewGuid(), DateTime.UtcNow);
 
-            pointsRepositoryMock.Verify(x => x.AddAssync(It.IsAny<Point>()), Times.Once);
+            pointsRepositoryMock.Verify(x => x.AddAssync(It.IsAny<MyPoint>()), Times.Once);
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace DeliveryService.Services.Points.Tests.Unit.Services
 
             await pointsService.AddPointAsync(id, "point", Guid.NewGuid(), DateTime.UtcNow, connections);
 
-            pointsRepositoryMock.Verify(x => x.AddAssync(It.IsAny<Point>()), Times.Once);
+            pointsRepositoryMock.Verify(x => x.AddAssync(It.IsAny<MyPoint>()), Times.Once);
 
         }
     }

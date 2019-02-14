@@ -1,6 +1,7 @@
 ﻿using DeliveryService.Common.Exceptions;
 using DeliveryService.Services.Points.Domain.Models;
 using DeliveryService.Services.Points.Domain.Repositories;
+using Neo4j.Driver.V1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,14 @@ namespace DeliveryService.Services.Points.Services
     {
         private readonly IPointRepository _pointRepository;
         private readonly IConnectionRepository _connectionRepository;
+        private readonly IGraphRepository _graphRepository; 
 
         public PointService(IPointRepository pointRepository,
-            IConnectionRepository connectionRepository)
+            IConnectionRepository connectionRepository, IGraphRepository graphRepository)
         {
-            _pointRepository = pointRepository ?? throw new ArgumentNullException(nameof(pointRepository));
+            _pointRepository = pointRepository;
             _connectionRepository = connectionRepository;
+            _graphRepository = graphRepository;
         }
 
         public async Task AddConnectionAsync(Guid id, decimal cost, Guid destination, string observations)
@@ -28,24 +31,24 @@ namespace DeliveryService.Services.Points.Services
                 throw new DeliveryServiceException("destination_not_found", destination + " was not found.");
             }
             var connection = new Connection(id, cost, destination, observations);
-            await _connectionRepository.AddAsync(connection);
+            await Task.WhenAll(_connectionRepository.AddAsync(connection), _graphRepository.AddConnectionAsync(id,connection));
         }
 
         public async Task AddPointAsync(Guid id, string name, Guid userId, DateTime createdAt)
         {
             var point = new MyPoint(id, name, userId, createdAt, null);
-            await _pointRepository.AddAssync(point);
+            await Task.WhenAll(_pointRepository.AddAssync(point), _graphRepository.AddPointAsync(point));
         }
 
         public async Task AddPointAsync(Guid id, string name, Guid userId, DateTime createdAt, IEnumerable<Connection> connections)
         {
             var point = new MyPoint(id, name, userId, createdAt, null);
-            await _pointRepository.AddAssync(point);
+            await Task.WhenAll(_pointRepository.AddAssync(point), _graphRepository.AddPointAsync(point));
 
             foreach (var item in connections)
             {
                 var connection = new Connection(item.Id, item.Cost, item.Destination, item.Observations);
-                await _connectionRepository.AddAsync(connection);
+                await Task.WhenAll(_connectionRepository.AddAsync(connection), _graphRepository.AddConnectionAsync(id, connection));
             }
         }
     }

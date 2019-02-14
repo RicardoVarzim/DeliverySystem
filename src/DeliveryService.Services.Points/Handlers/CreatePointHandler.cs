@@ -3,10 +3,8 @@ using System.Threading.Tasks;
 using DeliveryService.Common.Commands;
 using DeliveryService.Common.Events;
 using DeliveryService.Common.Exceptions;
-using DeliveryService.Services.Points.Domain.Models;
 using DeliveryService.Services.Points.Services;
 using Microsoft.Extensions.Logging;
-using Neo4j;
 using RawRabbit;
 
 namespace DeliveryService.Services.Points.Handlers
@@ -16,17 +14,14 @@ namespace DeliveryService.Services.Points.Handlers
         private readonly IBusClient _busClient;
         private readonly IPointService _pointService;
         private ILogger _logger;
-        private Neo4j.Driver.V1.IDriver _graphDriver; //TODO:
-
+        
         public CreatePointHandler(IBusClient busClient,
             IPointService pointService,
-            ILogger<CreatePointHandler> logger,
-            Neo4j.Driver.V1.IDriver graphDriver)
+            ILogger<CreatePointHandler> logger)
         {
             _busClient = busClient;
             _pointService = pointService;
             _logger = logger;
-            _graphDriver = graphDriver;
         }
 
         public async Task HandleAsync(CreatePoint command)

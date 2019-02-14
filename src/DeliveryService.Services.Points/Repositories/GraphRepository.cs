@@ -9,21 +9,46 @@ namespace DeliveryService.Services.Points.Repositories
 {
     public class GraphRepository : IGraphRepository
     {
-        private readonly IDriver driver;
+        private readonly IDriver _driver;
 
         public GraphRepository(IDriver driver)
         {
-            this.driver = driver;
+            _driver = driver;
         }
 
         public Task AddConnectionAsync(Guid pointId, Connection connection)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var session = _driver.Session())
+                {
+                    return session.RunAsync(@"
+                            MATCH (a:Point),(b:Person)
+                            WHERE a.id = 'A' AND b.name = 'B'
+                            CREATE (a)-[r:RELTYPE]->(b)
+                            RETURN type(r)                    
+                        ");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Task AddPointAsync(MyPoint node)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var session = _driver.Session())
+                {
+                    return session.RunAsync("CREATE (a:Point) { id: '"+ node.Id + "' }");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Task<IEnumerable<MyPoint>> PathAsync(MyPoint origin, MyPoint destiny)

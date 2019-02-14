@@ -43,11 +43,11 @@ namespace DeliveryService.Common.Neo4j
 
                 var driver = GraphDatabase.Driver(options.Value.ConnectionString, AuthTokens.Basic(options.Value.UserName, options.Value.Password));
 
-                using (var session = driver.Session())
-                {
-                    var name = "teste";
-                    session.Run("CREATE (a:Person {name: $name})", new { name });
-                }
+                //using (var session = driver.Session())
+                //{
+                //    var name = "teste";
+                //    session.Run("CREATE (a:Person {name: $name})", new { name });
+                //}
 
                 return driver;
             });

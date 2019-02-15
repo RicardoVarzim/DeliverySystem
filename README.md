@@ -80,6 +80,17 @@
 
 **Basic Functions**
 
+- Create User
+`curl -X POST \
+  http://localhost:5000/users \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'postman-token: d7865717-3cdd-08d5-6a7e-e897baf27718' \
+  -d '{
+	"email":"user1@delivery.com",
+	"password":"12345"
+}'`
+
 ## Exercise Overview
 
 **Acknowledgements**
@@ -88,14 +99,22 @@
 
 **Difficulties**
 
+ - Mongo WiredTiger error:
+	problem: Operation not permitted, no permissions to access data volume
+	solution attemp 1: removed volume sharing on Mongo 
+
  - Docker run with Api dependencies on RabbitMQ:
 	problem: on docker compose the services didn't wait on the dependencies like MQ service, so at startup they closed.
 	solution: `restart: on-failure` on api, points and identity services
  
+ - Neo4j Log Volume Sharing error:
+	- solution: removed log volume sharing 
+
  - Neo4j connect
 	problem: Neo4jClient.GraphClient.Connect cannot assign requested address even though the Neo4j server was accessible throw browser
 	solution attempt 1: The neo4j image needs to have a user and password different from the default in order to client get a connection. On docker compose neo4j image, setup `environment: NEO4J_AUTH: user:password`
     solution attempt 2: nevermind Neo4jClient and use Neo4jDriver instead
+	real solution: using neo4j docker-compose service tag instead of localhost 
   
 ## References
  - .NET Microservices: Architecture for Containerized .NET Applications https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/

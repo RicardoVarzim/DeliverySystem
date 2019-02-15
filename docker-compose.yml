@@ -36,8 +36,8 @@ services:
     restart: on-failure
   mongo:
     image: mongo
-    volumes:
-      - ./data/db:/data/db
+    #volumes:
+    #  - ./data/mongo:/data/db
     ports:
       - '27017:27017'
   rabbitmq:
@@ -49,9 +49,9 @@ services:
     image: neo4j:3.4
     environment:
       - NEO4J_AUTH=neo4j/newpassword
-    volumes:
-     - ./neo4j/data:/data/neo4j
-    # - ./neo4j/logs:/logs/neo4j
+    #volumes:
+    # - ./data/neo4j:/data/neo4j
+    # - ./logs/neo4j:/logs/neo4j
     ports:
       - '7474:7474'
       - '7687:7687'

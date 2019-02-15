@@ -51,9 +51,30 @@ namespace DeliveryService.Services.Points.Repositories
             }
         }
 
-        public Task<IEnumerable<MyPoint>> PathAsync(MyPoint origin, MyPoint destiny)
+        public Task<List<Path>> PathAsync(MyPoint origin, MyPoint destiny)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using(var session = _driver.Session())
+                {
+                    var result = session.RunAsync(@"
+                        MATCH (start:Point{id:'" + origin.Id + "'}), (end:Point{name:'" + destiny.Id + @"'})
+                        CALL algo.shortestPath.stream(start, end, 'cost')
+                        YIELD nodeId, cost
+                        MATCH(other: Point) WHERE id(other) = nodeId
+                        RETURN other.id AS id, cost
+                    ");
+
+                    return result.Result.ToListAsync(x => new Path() {
+                        PointId = x.Values["id"].As<Guid>(),
+                        Cost = x.Values["cost"].As<decimal>()
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

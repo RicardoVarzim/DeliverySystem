@@ -17,8 +17,9 @@ namespace DeliveryService.Services.Points.Tests.Unit.Services
         {
             var pointsRepositoryMock = new Mock<IPointRepository>();
             var connectionRepositoryMock = new Mock<IConnectionRepository>();
+            var graphRepositoryMock = new Mock<IGraphRepository>();
 
-            var pointsService = new PointService(pointsRepositoryMock.Object, connectionRepositoryMock.Object);
+            var pointsService = new PointService(pointsRepositoryMock.Object, connectionRepositoryMock.Object, graphRepositoryMock.Object);
 
             var id = Guid.NewGuid();
 
@@ -32,8 +33,9 @@ namespace DeliveryService.Services.Points.Tests.Unit.Services
         {
             var pointsRepositoryMock = new Mock<IPointRepository>();
             var connectionRepositoryMock = new Mock<IConnectionRepository>();
+            var graphRepositoryMock = new Mock<IGraphRepository>();
 
-            var pointsService = new PointService(pointsRepositoryMock.Object, connectionRepositoryMock.Object);
+            var pointsService = new PointService(pointsRepositoryMock.Object, connectionRepositoryMock.Object, graphRepositoryMock.Object);
             var id = Guid.NewGuid();
 
             Random rnd = new Random();

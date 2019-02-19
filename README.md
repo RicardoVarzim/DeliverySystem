@@ -7,9 +7,10 @@
    Core platform
  - Messaging using RabbitMQ
  - Store user identities and authenticate
- - CQRS, commands and events handlers design patterns
+ - CQS pattern, commands and events handlers design patterns
  - Unit and integration test
  - Deploy using Docker and Docker Compose
+ - Store Graph and find shortest Path
 
 **Requirements**
 
@@ -26,11 +27,19 @@
 - rabbitmq
 - jwt
 
-**System Architecture**
+**System Architecture Overview**
 
 - HTTP API Gateway
+
+This gateway works as a hub of commands registering and distributing the command through out the system using a MQ system namely rabbitMq. 
+
 - Identity Service
+
+Register and Validates User authentication
+
 - Points Service
+
+Stores and Queries a Neo4j graph Db and a mongo to store Point the related Connections. Retrieves the shortest Path between two Points.
 
 ## Development
 
@@ -89,13 +98,23 @@
   -d '{
 	"email":"user1@delivery.com",
 	"password":"12345"
-}'`
+	}'`
+
+- Create Point
+- Create Connection
+- Login
+- GetPoints
+- GetPath
 
 ## Exercise Overview
 
 **Acknowledgements**
  - First time using docker and docker compose
- - Implementing Service Bus
+ - Implementing a Messaging Bus
+ - Basic Unit and Integration Test 
+ - Cypher Queries
+ - Salt Generator and Validation
+ - CQRS pattern 
 
 **Difficulties**
 
@@ -116,6 +135,10 @@
     solution attempt 2: nevermind Neo4jClient and use Neo4jDriver instead
 	real solution: using neo4j docker-compose service tag instead of localhost 
   
+**Conclusion**
+	I'm proud of the final result of this exercise. A great challenge that gave me alot of knowledge and pratice. Ive come across alot of infrastructure problems, with composing the solution first of all, neo4j client. Besides the 
+	technical issues, not related so much with programming and the logic of the system but with the system infrastructure it was a very valued experience.
+
 ## References
  - .NET Microservices: Architecture for Containerized .NET Applications https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/
  - .NET Core Microservices Course: https://www.packtpub.com/application-development/net-core-microservices-video
@@ -126,6 +149,8 @@
  - Get started with Swashbuckle and ASP.NET Core: https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.2&tabs=visual-studio
 
 
-**Future Work** 
-- Neo4j Client Connect
-- Resolve Shortest Path 
+## Future Work
+
+- Life Check Service
+- Continuos Integration Monotoring
+- Profilling Tests

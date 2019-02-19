@@ -27,7 +27,7 @@ namespace DeliveryService.Services.Points.Controllers
             return Json(await _pointRepository.BrowseAsync());
         }
 
-        [HttpGet("")]
+        [HttpGet("path")]
         public async Task<IActionResult> GetPath([FromBody] GetPath command)
         {
             var originPoint = _pointRepository.GetAsync(command.originId);

@@ -90,21 +90,13 @@ Stores and Queries a Neo4j graph Db and a mongo to store Point the related Conne
 **Basic Functions**
 
 - Create User
-`curl -X POST \
-  http://localhost:5000/users \
-  -H 'cache-control: no-cache' \
-  -H 'content-type: application/json' \
-  -H 'postman-token: d7865717-3cdd-08d5-6a7e-e897baf27718' \
-  -d '{
-	"email":"user1@delivery.com",
-	"password":"12345"
-	}'`
-
 - Create Point
 - Create Connection
 - Login
 - GetPoints
 - GetPath
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/4a5cfee58ef0ff315de5)
 
 ## Exercise Overview
 

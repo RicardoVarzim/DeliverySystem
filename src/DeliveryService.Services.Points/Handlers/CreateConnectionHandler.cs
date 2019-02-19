@@ -18,7 +18,7 @@ namespace DeliveryService.Services.Points.Handlers
         private ILogger _logger;
 
         public CreateConnectionHandler(IBusClient busClient, 
-            IPointService pointService, ILogger logger)
+            IPointService pointService, ILogger<CreateConnectionHandler> logger)
         {
             _busClient = busClient ?? throw new ArgumentNullException(nameof(busClient));
             _pointService = pointService ?? throw new ArgumentNullException(nameof(pointService));
@@ -27,7 +27,7 @@ namespace DeliveryService.Services.Points.Handlers
 
         public async Task HandleAsync(CreateConnection command)
         {
-            //_logger.LogInformation("Creating Connection: ", command.Observations);
+            _logger.LogInformation("Creating Connection: ", command.Observations);
 
             try
             {

@@ -10,7 +10,7 @@ using RawRabbit;
 
 namespace DeliveryService.Api.Controllers
 {
-    [Route("[controller]")]
+    [Route("")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class PointsController : Controller
     {
@@ -21,7 +21,7 @@ namespace DeliveryService.Api.Controllers
             _busClient = busClient;
         }
 
-        [HttpPost()]
+        [HttpPost("point")]
         public async Task<IActionResult> Post([FromBody] CreatePoint command)
         {
             command.Id = Guid.NewGuid();
@@ -33,10 +33,9 @@ namespace DeliveryService.Api.Controllers
             return Accepted("points/" + command.Id);
         }
 
-        [HttpPost()]
+        [HttpPost("connection")]
         public async Task<IActionResult> Post([FromBody] CreateConnection command)
         {
-            command.Id = Guid.NewGuid();
             command.CreatedAt = DateTime.UtcNow;
             command.UserId = Guid.Parse(User.Identity.Name);
 

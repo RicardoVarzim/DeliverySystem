@@ -21,7 +21,7 @@ namespace DeliveryService.Api.Controllers
             _busClient = busClient;
         }
 
-        [HttpPost("")]
+        [HttpPost()]
         public async Task<IActionResult> Post([FromBody] CreatePoint command)
         {
             command.Id = Guid.NewGuid();
@@ -33,12 +33,17 @@ namespace DeliveryService.Api.Controllers
             return Accepted("points/" + command.Id);
         }
 
-        [HttpGet("")]
-        public async Task<IActionResult> GetPath([FromBody] GetPath command)
+        [HttpPost()]
+        public async Task<IActionResult> Post([FromBody] CreateConnection command)
         {
+            command.Id = Guid.NewGuid();
+            command.CreatedAt = DateTime.UtcNow;
+            command.UserId = Guid.Parse(User.Identity.Name);
+
             await _busClient.PublishAsync(command);
 
-            return Accepted("points/");
+            return Accepted("points/" + command.Id);
         }
+
     }
 }

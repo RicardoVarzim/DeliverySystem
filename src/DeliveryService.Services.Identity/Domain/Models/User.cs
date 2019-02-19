@@ -40,7 +40,7 @@ namespace DeliveryService.Services.Identity.Domain.Models
 
         public bool ValidatePassword(string password, IEncrypter encrypter)
         {
-            return password.Equals(encrypter.GetHash(password, Salt));
+            return Password.Equals(encrypter.GetHash(password, Salt));
         }
     }
 }

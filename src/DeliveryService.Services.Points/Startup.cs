@@ -37,6 +37,7 @@ namespace DeliveryService.Services.Points
             services.AddScoped<IConnectionRepository, ConnectionRepository>();
             services.AddScoped<IDatabaseSeeder, CustomMongoSeeder>();
             services.AddScoped<ICommandHandler<CreatePoint>, CreatePointHandler>();
+            services.AddScoped<ICommandHandler<CreateConnection>, CreateConnectionHandler>();
             services.AddScoped<IPointService, PointService>();
             services.AddScoped<IGraphRepository, GraphRepository>();
         }

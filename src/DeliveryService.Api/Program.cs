@@ -18,8 +18,9 @@ namespace DeliveryService.Api
         {
             ServiceHost.Create<Startup>(args)
                 .UseRabbitMq()
-                .SubscribeToEvent<ActivityCreated>()
+                .SubscribeToEvent<UserCreated>()
                 .SubscribeToEvent<PointCreated>()
+                .SubscribeToEvent<ConnectionCreated>()
                 .Build()
                 .Run();
         }

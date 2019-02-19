@@ -36,11 +36,6 @@ namespace DeliveryService.Common.Neo4j
             {
                 var options = d.GetService<IOptions<Neo4jOptions>>();
 
-                Console.WriteLine("NEO4J Driver OPTIONS:");
-                Console.WriteLine(options.Value.ConnectionString);
-                Console.WriteLine(options.Value.UserName);
-                Console.WriteLine(options.Value.Password);
-
                 var driver = GraphDatabase.Driver(options.Value.ConnectionString, AuthTokens.Basic(options.Value.UserName, options.Value.Password));
 
                 using (var session = driver.Session())

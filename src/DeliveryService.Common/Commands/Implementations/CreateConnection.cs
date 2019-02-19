@@ -10,5 +10,7 @@ namespace DeliveryService.Common.Commands
         public decimal Cost { get; set; }
         public Guid Destination { get; set; }
         public string Observations { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public Guid UserId { get; set; }
     }
 }

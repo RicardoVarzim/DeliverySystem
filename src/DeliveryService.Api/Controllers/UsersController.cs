@@ -26,5 +26,6 @@ namespace DeliveryService.Api.Controllers
 
             return Accepted("users/" + command.Name);
         }
+
     }
 }

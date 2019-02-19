@@ -19,6 +19,7 @@ namespace DeliveryService.Services.Points
             ServiceHost.Create<Startup>(args)
                     .UseRabbitMq()
                     .SubscribeToCommand<CreatePoint>()
+                    .SubscribeToCommand<CreateConnection>()
                     .Build()
                     .Run();
         }

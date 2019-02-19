@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace DeliveryService.Api.Handlers
 {
-    public class PointCreatedHandler : IEventHandler<PointCreated>
+    public class ConnectionCreatedHandler : IEventHandler<ConnectionCreated>
     {
-        public async Task HandleAsync(PointCreated @event)
+        public async Task HandleAsync(ConnectionCreated @event)
         {
             await Task.CompletedTask;
-            Console.WriteLine($"Point created: {@event.Name}");
+            Console.WriteLine($"Point created: {@event.Observations}");
         }
     }
 }

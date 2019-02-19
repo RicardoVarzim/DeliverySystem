@@ -26,7 +26,7 @@ namespace DeliveryService.Services.Points.Handlers
 
         public async Task HandleAsync(CreatePoint command)
         {
-            _logger.LogInformation($"Creating Point: {command.Name}");
+            //_logger.LogInformation($"Creating Point: {command.Name}");
 
             try
             {

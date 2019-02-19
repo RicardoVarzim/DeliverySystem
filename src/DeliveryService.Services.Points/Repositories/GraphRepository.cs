@@ -23,9 +23,9 @@ namespace DeliveryService.Services.Points.Repositories
                 using (var session = _driver.Session())
                 {
                     return session.RunAsync(@"
-                            MATCH (a:Point),(b:Person)
-                            WHERE a.id = 'A' AND b.name = 'B'
-                            CREATE (a)-[r:RELTYPE]->(b)
+                            MATCH (a:Point),(b:Point)
+                            WHERE a.id = 'A' AND b.id = 'B'
+                            CREATE (a)-[r:cost]->(b)
                             RETURN type(r)                    
                         ");
                 }
@@ -42,7 +42,7 @@ namespace DeliveryService.Services.Points.Repositories
             {
                 using (var session = _driver.Session())
                 {
-                    return session.RunAsync("CREATE (a:Point) { id: '"+ node.Id + "' }");
+                    return session.RunAsync("CREATE (a:Point { id: '" + node.Id + "' }) ");
                 }
             }
             catch (Exception ex)
@@ -58,7 +58,7 @@ namespace DeliveryService.Services.Points.Repositories
                 using(var session = _driver.Session())
                 {
                     var result = session.RunAsync(@"
-                        MATCH (start:Point{id:'" + origin.Id + "'}), (end:Point{name:'" + destiny.Id + @"'})
+                        MATCH (start:Point{id:'" + origin.Id + "'}), (end:Point{id:'" + destiny.Id + @"'})
                         CALL algo.shortestPath.stream(start, end, 'cost')
                         YIELD nodeId, cost
                         MATCH(other: Point) WHERE id(other) = nodeId

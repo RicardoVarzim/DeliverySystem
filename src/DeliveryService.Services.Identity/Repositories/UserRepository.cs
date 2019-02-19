@@ -34,7 +34,7 @@ namespace DeliveryService.Services.Identity.Repositories
 
         public async Task<User> GetAsync(string name)
         {
-            return await Collection.AsQueryable().FirstOrDefaultAsync(p => p.Name == name);
+            return await Collection.AsQueryable().FirstOrDefaultAsync(p => p.Email == name);
         }
     }
 }

@@ -30,8 +30,9 @@ namespace DeliveryService.Api
             services.AddLogging();
             services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
-            services.AddScoped<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
+            services.AddScoped<IEventHandler<UserCreated>, UserCreatedHandler>();
             services.AddScoped<IEventHandler<PointCreated>, PointCreatedHandler>();
+            services.AddScoped<IEventHandler<ConnectionCreated>, ConnectionCreatedHandler>();
 
             services.AddSwaggerGen(c =>
             {
@@ -67,11 +68,11 @@ namespace DeliveryService.Api
             app.UseAuthentication();
             app.UseMvc();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Delivery Service");
-            });
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Delivery Service");
+            //});
         }
     }
 }

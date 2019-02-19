@@ -27,7 +27,7 @@ namespace DeliveryService.Services.Points.Handlers
 
         public async Task HandleAsync(CreateConnection command)
         {
-            _logger.LogInformation("Creating Connection: ", command.Observations);
+            //_logger.LogInformation("Creating Connection: ", command.Observations);
 
             try
             {

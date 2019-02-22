@@ -11,5 +11,7 @@ namespace DeliveryService.Services.Points.Services
         Task AddPointAsync(Guid id, string name, Guid userId, DateTime createdAt);
         Task AddPointAsync(Guid id, string name, Guid userId, DateTime createAt, IEnumerable<Connection> connections);
         Task AddConnectionAsync(Guid id, decimal cost, Guid destination, string observations);
+        Task<IEnumerable<Path>> GetPath(Guid origin, Guid destination);
+        Task<IEnumerable<MyPoint>> BrowsePointsAsync();
     }
 }

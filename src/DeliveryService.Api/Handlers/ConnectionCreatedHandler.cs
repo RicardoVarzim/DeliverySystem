@@ -11,7 +11,7 @@ namespace DeliveryService.Api.Handlers
         public async Task HandleAsync(ConnectionCreated @event)
         {
             await Task.CompletedTask;
-            Console.WriteLine($"Point created: {@event.Observations}");
+            Console.WriteLine($"Connection created: {@event.Observations}");
         }
     }
 }

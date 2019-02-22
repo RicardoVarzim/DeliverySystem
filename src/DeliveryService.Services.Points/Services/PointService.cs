@@ -1,10 +1,8 @@
 ﻿using DeliveryService.Common.Exceptions;
 using DeliveryService.Services.Points.Domain.Models;
 using DeliveryService.Services.Points.Domain.Repositories;
-using Neo4j.Driver.V1;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DeliveryService.Services.Points.Services
@@ -50,6 +48,25 @@ namespace DeliveryService.Services.Points.Services
                 var connection = new Connection(item.Id, item.Cost, item.Destination, item.Observations);
                 await Task.WhenAll(_connectionRepository.AddAsync(connection), _graphRepository.AddConnectionAsync(id, connection));
             }
+        }
+
+        public Task<IEnumerable<MyPoint>> BrowsePointsAsync()
+        {
+            return _pointRepository.BrowseAsync();
+        }
+
+        public async Task<IEnumerable<Path>> GetPath(Guid originId, Guid destinationId)
+        {
+            var originPoint = await _pointRepository.GetAsync(originId);
+            var destinationPoint = await _pointRepository.GetAsync(destinationId);
+            var pathList = await _graphRepository.PathAsync(originPoint, destinationPoint);
+
+            if (pathList == null)
+            {
+                return null;
+            }
+
+            return pathList;
         }
     }
 }
